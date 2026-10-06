@@ -174,14 +174,24 @@ const Hero = () => {
                 transform: `perspective(1000px) rotateY(${mousePos.x * 6}deg) rotateX(${-mousePos.y * 6}deg)`
               }}
             >
-              {/* Inner wrapper */}
-              <div className="relative rounded-[22px] overflow-hidden bg-[#0d0d12]">
-                <img
-                  src="/images/hero.png"
-                  alt="Vishesh Singh - Full Stack Web Developer"
-                  className="w-full h-auto object-cover object-top select-none transition-transform duration-700 hover:scale-105"
-                  loading="eager"
-                />
+              {/* Inner wrapper with Cinematic Video & Fallback */}
+              <div className="relative rounded-[22px] overflow-hidden bg-[#0d0d12] aspect-[3/4] flex items-center justify-center">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster="/images/hero.png"
+                  className="w-full h-full object-cover object-top select-none transition-transform duration-700 hover:scale-105"
+                >
+                  <source src="/videos/hero-ambient.mp4" type="video/mp4" />
+                  <source src="/videos/hero.mp4" type="video/mp4" />
+                  <img
+                    src="/images/hero.png"
+                    alt="Vishesh Singh - Full Stack Web Developer"
+                    className="w-full h-full object-cover object-top"
+                  />
+                </video>
 
                 {/* Cinematic subtle gradient overlays to meld with dark page */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-60 pointer-events-none" />
@@ -189,6 +199,14 @@ const Hero = () => {
 
                 {/* Subtle blue rim lighting shimmer */}
                 <div className="absolute inset-0 border border-cyan-400/20 rounded-[22px] pointer-events-none" />
+
+                {/* Live Video Indicator Badge */}
+                <div className="absolute bottom-3 right-3 px-2.5 py-1 rounded-lg bg-black/60 backdrop-blur-md border border-white/10 flex items-center gap-1.5 z-20 pointer-events-none">
+                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+                  <span className="font-mono text-[9px] uppercase tracking-wider text-cyan-300 font-semibold">
+                    MOTION REEL
+                  </span>
+                </div>
               </div>
 
               {/* Floating Holographic Glass Panel 1: Live Code Snippet */}
